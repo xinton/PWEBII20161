@@ -1,0 +1,10 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+<%--
+<c:url var="ajuda" value="ajuda.jsp"/>
+<a href="${ajuda}"> <button type="button"> &#63; Ajuda</button> <a/>
+--%>
+-->
+
+<a href="ajuda.jsp"> <button type="button"> &#63; Ajuda</button> <a/>
+<a href="sair"> <button type="button"> Sair </button> <a/>

@@ -7,25 +7,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Pedido </title>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+th {
+	background-color: yellow;
+}
+</style>
 </head>
-<body>
+<body>		
+	<table>
+		<tr> 
+			<th> Descricao </th>
+			<th> Preco </th>
+			<th> Quantidade </th> 
+			<th> Alterar quantidade  </th>
+		</tr>
+		<c:forEach items="${sessionScope.carrinho.itemsCarrinho}" var="i">
+		<tr>
+			<td> ${i.descricaoCurta} </td>
+			<td> ${i.precoUnitario} </td>
+			<td> ${i.numItens} </td>
+			<td> 
+				<form action="pedido" method="post"> 
+					<input type="hidden" name="itemID" value="${i.itemID}"/>
+					<input type="text" name="quantidade" value="${i.numItens }"/> 
+					<input type="submit" name="altQtd" value="Alterar quantidade"/>
+				</form>				
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
+	<ul> 
+		<li> <a href="lista"> <button> Continuar Comprando </button> </a> </li>
+		<li> <a href="resumo"> <button> Resumo da compra </button> </a> </li>
+	</ul>
 	
-		<table style="border: black 1px solid">
-			<tr> 
-				<td> Descricao </td>
-				<td> Preco </td>
-				<td> Quantidade </td>
-			</tr>
-			<c:forEach items="${sessionScope.carrinho.itemsCarrinho}" var="i">
-			<tr>
-				<td> ${i.descricaoCurta} </td>
-				<td> ${i.precoUnitario} </td>
-				<td> ${i.numItens} </td>
-				<td> Alterar quantidade : <input type="text" name="qtd">  </input> </td>
-			
-			</tr>
-			</c:forEach>
-		</table>
-		
+	
 </body>
 </html>

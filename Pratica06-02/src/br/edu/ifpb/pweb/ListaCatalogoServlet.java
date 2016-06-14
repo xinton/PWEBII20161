@@ -19,15 +19,6 @@ public class ListaCatalogoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		List<String> listaItems = new ArrayList<String>();
-		for ( Item i : Catalogo.getItems() ){
-			listaItems.add( i.getItemID() );
-		}
-		request.setAttribute("catalogo", listaItems );
-		RequestDispatcher rd = request.getRequestDispatcher("catalogo.jsp");
-		rd.forward(request, response);*/
-
 		request.setAttribute("catalogo", Catalogo.getItems() );
 		RequestDispatcher rd = request.getRequestDispatcher("catalogo.jsp");
 		rd.forward(request, response);

@@ -17,36 +17,48 @@ import br.edu.ifpb.pweb.carrinho.model.Item;
 
 @WebServlet("/pedido")
 public class PedidoServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("pedido.jsp");
+		rd.forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String itemID = request.getParameter("itemID");
+		String itemID = request.getParameter("itemID");	
+		
 		Item item = Catalogo.getItem(itemID);
 		
-		HttpSession session = request.getSession();
-		
+		HttpSession session = request.getSession();		
+				
 		if( session.isNew() ) 
 		{
 			Carrinho c = new Carrinho();
 			c.adicioneItem(itemID);
+
+			if ( request.getParameter("altQtd") != null ) {
+				Integer quantidadeItem = Integer.parseInt( request.getParameter("quantidade") );
+				c.setQtdeItens(itemID, quantidadeItem);
+			}
+						
 			session.setAttribute("carrinho", c );
 			
 			RequestDispatcher rd = request.getRequestDispatcher("pedido.jsp");
 			rd.forward(request, response);
 		} 
-		else{
+		else{	
 			Carrinho c = (Carrinho) session.getAttribute("carrinho");
 			c.adicioneItem(itemID);
+
+			if ( request.getParameter("altQtd") != null ) {
+				Integer quantidadeItem = Integer.parseInt( request.getParameter("quantidade") );
+				c.setQtdeItens(itemID, quantidadeItem);
+			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("pedido.jsp");
 			rd.forward(request, response);
 		}
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("pedido.jsp");
-		rd.forward(request, response);
-	}
 
 }

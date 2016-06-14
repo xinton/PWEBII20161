@@ -43,19 +43,28 @@ th {
 	<br/>
 	<a href="lista"> <button> Continuar Comprando </button> </a> <br/> <br/> <hr/>
 	
+	<form action="resumo" method="get" id="formEntrega"></form>	
+	
 	<form action="finaliza" method="post"> 
-		<h3> Informações de pagamento e entrega </h3>
+		<h3> Informações de pagamento </h3>
 		Nome: <input type="text" name="nome"/>  <br/>
+		Cartao: <input type="text" name="cartao"/>
+		
+		<h3> Informações de Entrega </h3>
+		Forma de entrega : 
+		<select name="formaEntrega"> 
+			<option value="esedex">E-Sedex</option>
+			<option value="sedex">Sedex</option>
+		</select>
+		<br/>
 		Endereço: <input type="text" name="endereco"/>  <br/>
 		Pais: <input type="text" name="pais"/>  <br/>
+		<button type="submit" form="formEntrega" value="Submit">Calcular</button>
 		
 		<c:set var="now" value="<%=new java.util.Date()%>" />
-		<input type="hidden" name="data" value="${now}"/>
-		<%-- <fmt:formatDate pattern="yyyy-MM-dd" 
-            value="${now}" /> --%>
-		
-		Carta: <input type="text" name="cartao"/>
+		<input type="hidden" name="data" value="${now}"/>		
 		<input type="hidden" name="total" value="${sessionScope.total}"/>
+		
 		 <br/>  <br/>
 		<input type="submit" value="finalizar compra"/>
 	</form>

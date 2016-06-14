@@ -10,6 +10,7 @@
 <title> Catalogo de Itens </title>
 </head>
 <body>
+	<center> 
 	<c:forEach items = "${catalogo}" var = "i">
 		<form action="pedido" method="post">
 		  	<p>
@@ -20,6 +21,7 @@
 				<input type="submit" value="Adicionar ao carrinho"> </input> <br/>
 			</p>  
 		</form>
+		<hr/>
 	</c:forEach>	
 	
 	<%-- 
@@ -37,6 +39,6 @@
 	</ul>
 	</form>
 	--%>
-
+	</center>
 </body>
 </html>

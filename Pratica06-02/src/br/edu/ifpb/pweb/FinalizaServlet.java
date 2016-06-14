@@ -24,17 +24,18 @@ public class FinalizaServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String nome = request.getParameter("nome");
-		String endereco = request.getParameter("endereco");
-		String pais = request.getParameter("pais");
+		request.setAttribute("nome", request.getParameter("nome"));
+		request.setAttribute("endereco", request.getParameter("endereco"));
+		request.setAttribute("pais", request.getParameter("pais"));
+		request.setAttribute("data", request.getParameter("data"));
+		request.setAttribute("cartao", request.getParameter("cartao"));
+		request.setAttribute("total", request.getParameter("total"));
 		
-		String data = request.getParameter("data");
-		
-		String cartao = request.getParameter("cartao");
-		String total = request.getParameter("total");
+		session.invalidate();
 		
 		RequestDispatcher rd = request.getRequestDispatcher("resumo.jsp");
 		rd.forward(request, response);
+		
 	}
 
 }

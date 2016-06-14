@@ -48,6 +48,14 @@ public class PedidoServlet extends HttpServlet {
 		} 
 		else{	
 			Carrinho c = (Carrinho) session.getAttribute("carrinho");
+			
+			//TODO - "Session não existe", tirar duvida.
+			/*if (c == null) {
+				session.invalidate();	
+				response.sendRedirect("lista");
+				return;
+			}*/
+			
 			c.adicioneItem(itemID);
 
 			if ( request.getParameter("altQtd") != null ) {
